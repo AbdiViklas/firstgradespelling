@@ -1,16 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>First grade spelling quiz</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
 <body>
+  <body class="grey lighten-3">
   <div class="container flow-text">
     <div class="card center-align">
-      <div class="card-content">
-      <p>Click to play word:</p>
-          <a class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">play_arrow</i></a>
-      <p>Type your spelling:</p>
-      <form>
-          <div class="input-field">
-            <input placeholder="Type your word here" id="first_name" type="text" class="validate">
+      <div class="card-content yellow lighten-5 purple-text text-darken-3">
+        <p>Click to hear the word:</p>
+        <a id="play" class="btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">play_arrow</i></a>
+        <p>Type your spelling:</p>
+        <div class="input-field" id="response">
+          <form>
+            <!--               <div class="row"> -->
+            <input placeholder="Type your word here" id="responseText" class="inline-block" type="text" autofocus autocomplete="off">
+            <button id="enter" class="btn waves-effect waves-light inline-block" type="submit" name="action"><i class="material-icons left">input</i>enter</button>
+            <!--                 </div> -->
+          </form>
+        </div>
+        <div class="divider"></div>
+        <div id="scoreboard" class="row">
+          <div class="col m6 right-align">
+            <span>RIGHT:</span>
+            <span id="rightScore" class="score">0</span>
+            <span>WRONG:</span>
+            <span id="wrongScore" class="score">0</span>
+            <span>RECORD:</span>
+            <span id="recordScore" class="score">0</span>
           </div>
-          <button id="enter" class="btn waves-effect waves-light col s4" type="submit" name="action"><i class="material-icons left">input</i>enter</button>
-      </form>
-</div>
+          <div class="col m6 left-align">
+            <span>RESET HIGH SCORE: <a id="resetScore" class="waves-effect waves-light btn little"><i class="material-icons">restore</i></a></span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s6 offset-m2 underline left-align">Give me a hint</div>
+          <div class="col s1">
+            <a id="hint" class="waves-effect waves-light btn little"><i class="material-icons">help</i></a></div>
+        </div>
+        <div class="row">
+          <div class="col s6 offset-m2 underline left-align">Skip this word</div>
+          <div class="col s1">
+            <a id="skip" class="waves-effect waves-light btn little"><i class="material-icons">skip_next</i></a></div>
+        </div>
+        <div class="row">
+          <div class="col s6 offset-m2 underline left-align">Restart list</div>
+          <div class="col s1">
+            <a id="restart" class="waves-effect waves-light btn little"><i class="material-icons">replay</i></a></div>
+        </div>
+        <div class="row">
+          <div class="col s6 offset-m2 underline left-align">Jump to a random word</div>
+          <div class="col s1">
+            <a id="random" class="waves-effect waves-light btn little"><i class="material-icons">shuffle</i></a></div>
+        </div>
+        <div class="row">
+          <div class="col s6 offset-m2 underline left-align">Show my study list</div>
+          <div class="col s1">
+            <a id="study" class="waves-effect waves-light btn little"><i class="material-icons" href="#studyList">library_books</i></a></div>
+        </div>
+        <div id="studyList" class="modal">
+          <div class="modal-content">
+            <div class="right"><i class="modal-close material-icons">close</i></div>
+            <p class="left-align">These are the words that you've gotten wrong or skipped sometimes. You can study them, click the "x" beside each one to remove it from the list, or... <a id="studyClear" class="waves-effect waves-light btn little"><i class="material-icons">delete</i>clear the list</a></p>
+            <div id="studyListWords" class="left-align chips"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

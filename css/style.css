@@ -1,0 +1,43 @@
+#scoreboard {
+  font-size: 0.7em;
+  margin: 2px;
+}
+
+.score {
+  margin: 2px;
+  padding: 2px;
+  border: 1px solid #6a1b9a;
+  border-radius: 5px;
+}
+
+.inline-block {
+  display: inline-block; !important
+}
+
+.divider {
+  margin: 10px;
+}
+
+.little {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+}
+
+.underline {
+  border-style: none none solid none;
+  border-width: 1px;
+  border-bottom-color: #e0e0e0;
+}
+
+.valign-wrapper {
+  vertical-align: middle;
+}
+
+/* #studyClear {
+  display: inline-block; !important
+} */
+
+#studyListWords {
+  margin: 5px;
+}
