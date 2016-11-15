@@ -167,47 +167,80 @@ var updateWord = function() {
 function getMerriamWebster() {
   updateWord();
   usingTTS = false;
-  $.ajax({
-    url: "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e", //maybe remove the crossorigin once I get this off Codepen
-    type: "GET",
-    contentType: "text/plain",
-    xhrFields: {
-      withCredentials: false
-    },
-    dataType: "xml",
-    success: function(data) {
-      var audioFilename = $(data).find("hw:contains(" + word + ") ~ sound wav").html();
-      console.log("wav =" + audioFilename);
-      if (audioFilename === undefined || problemList.includes(word)) {
-        if (hasTTS === false) {
-          skipWord();
-        } else {
-          usingTTS = true;
-          console.log("using TTS");
-          tts = new SpeechSynthesisUtterance(word);
-        }
+  var xhr = new XMLHttpRequest();
+  var url: "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e";
+  xhr.onload = function(data) {
+    var audioFilename = $(data).find("hw:contains(" + word + ") ~ sound wav").html();
+    console.log("wav =" + audioFilename);
+    if (audioFilename === undefined || problemList.includes(word)) {
+      if (hasTTS === false) {
+        skipWord();
       } else {
-        var subdir = ""
-        if (audioFilename.startsWith("bix")) {
-          subdir = "bix/";
-        } else if (audioFilename.startsWith("gg")) {
-          subdir = "gg/"
-        } else if (parseInt(audioFilename.charAt(0)) === "number") {
-          subdir = "number/"
-        } else {
-          subdir = audioFilename.charAt(0) + "/";
-        }
-        audioURL = "http://media.merriam-webster.com/soundc11/" + subdir + audioFilename;
-        console.log(audioURL);
-        audio = new Audio(audioURL);
+        usingTTS = true;
+        console.log("using TTS");
+        tts = new SpeechSynthesisUtterance(word);
       }
-      stopLoader();
-    },
-    error: function() {
-      alert("I'm sorry, there was an error. Try reloading?");
+    } else {
+      var subdir = ""
+      if (audioFilename.startsWith("bix")) {
+        subdir = "bix/";
+      } else if (audioFilename.startsWith("gg")) {
+        subdir = "gg/"
+      } else if (parseInt(audioFilename.charAt(0)) === "number") {
+        subdir = "number/"
+      } else {
+        subdir = audioFilename.charAt(0) + "/";
+      }
+      audioURL = "http://media.merriam-webster.com/soundc11/" + subdir + audioFilename;
+      console.log(audioURL);
+      audio = new Audio(audioURL);
     }
-  });
-}
+    stopLoader();
+  }
+
+  xhr.send();
+
+//   $.ajax({
+//     url: "http://crossorigin.me/http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e", //maybe remove the crossorigin once I get this off Codepen
+//     type: "GET",
+//     contentType: "text/plain",
+//     xhrFields: {
+//       withCredentials: false
+//     },
+//     dataType: "xml",
+//     success: function(data) {
+//       var audioFilename = $(data).find("hw:contains(" + word + ") ~ sound wav").html();
+//       console.log("wav =" + audioFilename);
+//       if (audioFilename === undefined || problemList.includes(word)) {
+//         if (hasTTS === false) {
+//           skipWord();
+//         } else {
+//           usingTTS = true;
+//           console.log("using TTS");
+//           tts = new SpeechSynthesisUtterance(word);
+//         }
+//       } else {
+//         var subdir = ""
+//         if (audioFilename.startsWith("bix")) {
+//           subdir = "bix/";
+//         } else if (audioFilename.startsWith("gg")) {
+//           subdir = "gg/"
+//         } else if (parseInt(audioFilename.charAt(0)) === "number") {
+//           subdir = "number/"
+//         } else {
+//           subdir = audioFilename.charAt(0) + "/";
+//         }
+//         audioURL = "http://media.merriam-webster.com/soundc11/" + subdir + audioFilename;
+//         console.log(audioURL);
+//         audio = new Audio(audioURL);
+//       }
+//       stopLoader();
+//     },
+//     error: function() {
+//       alert("I'm sorry, there was an error. Try reloading?");
+//     }
+//   });
+// }
 
 function updateRight() {
   var rightCount = $("#rightScore").html();
