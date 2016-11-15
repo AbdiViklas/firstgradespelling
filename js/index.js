@@ -125,7 +125,7 @@ if (!window.localStorage) {
   localStorage.recordScore = 0;
 }
 
-if (window.localStorage) { //this line is still a problem. It breaks the app on the first load
+if (window.localStorage) {
   if (!localStorage.studyListArray) {
     localStorage.studyListArray = "";
   } else if (localStorage.studyListArray.length > 0) {
@@ -241,6 +241,7 @@ function getMerriamWebster() {
 //     }
 //   });
 // }
+}
 
 function updateRight() {
   var rightCount = $("#rightScore").html();
