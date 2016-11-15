@@ -168,7 +168,7 @@ function getMerriamWebster() {
   updateWord();
   usingTTS = false;
   var xhr = new XMLHttpRequest();
-  var url: "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e";
+  var url = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e";
   xhr.onload = function(data) {
     var audioFilename = $(data).find("hw:contains(" + word + ") ~ sound wav").html();
     console.log("wav =" + audioFilename);
