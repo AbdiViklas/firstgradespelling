@@ -168,7 +168,7 @@ function getMerriamWebster() {
   updateWord();
   usingTTS = false;
   $.ajax({
-    url: "http://crossorigin.me/http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e", //maybe remove the crossorigin once I get this off Codepen
+    url: "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word + "?key=9ef9d420-7fba-449f-9167-bd807480798e", //maybe remove the crossorigin once I get this off Codepen
     type: "GET",
     contentType: "text/plain",
     xhrFields: {
